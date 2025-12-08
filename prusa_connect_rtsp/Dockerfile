@@ -1,19 +1,16 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install system dependencies
+# Install system dependencies and Python packages from Alpine repos
 RUN apk add --no-cache \
     python3 \
     py3-pip \
+    py3-opencv \
     py3-numpy \
+    py3-requests \
     ffmpeg \
-    jq
-
-# Install Python packages
-RUN pip3 install --no-cache-dir --break-system-packages \
-    opencv-python-headless \
-    requests \
-    "numpy<2.0"
+    jq \
+    bash
 
 # Copy application files
 COPY main.py /
