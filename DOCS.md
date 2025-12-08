@@ -124,5 +124,5 @@ Timelapse videos are generated when the add-on stops or restarts.
 
 ## Support
 
-- [GitHub Issues](https://github.com/sebastian/rtsp-to-prusa-ha/issues)
+- [GitHub Issues](https://github.com/schmacka/Prusa-Connect-RTSP-HA/issues)
 - [Upstream Project](https://github.com/Knopersikcuo/Prusa-Connect-RTSP)

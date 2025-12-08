@@ -1,6 +1,6 @@
 # Home Assistant Add-on: Prusa Connect RTSP Camera
 
-[![Open your Home Assistant instance and show the add add-on repository dialog](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsebastian%2Frtsp-to-prusa-ha)
+[![Open your Home Assistant instance and show the add add-on repository dialog](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fschmacka%2FPrusa-Connect-RTSP-HA)
 
 Stream RTSP camera feeds to Prusa Connect for 3D printer monitoring through Home Assistant's configuration UI.
 
@@ -17,7 +17,7 @@ Stream RTSP camera feeds to Prusa Connect for 3D printer monitoring through Home
    - Navigate to **Settings** > **Add-ons** > **Add-on Store**
    - Click the menu (three dots) in the top right corner
    - Select **Repositories**
-   - Add: `https://github.com/sebastian/rtsp-to-prusa-ha`
+   - Add: `https://github.com/schmacka/Prusa-Connect-RTSP-HA`
 
 2. Find "Prusa Connect RTSP Camera" in the add-on store and click **Install**
 
