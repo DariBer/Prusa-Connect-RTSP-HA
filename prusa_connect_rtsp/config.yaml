@@ -1,5 +1,5 @@
 name: "Prusa Connect RTSP Camera"
-version: "1.0.0"
+version: "1.1.0"
 slug: "prusa_connect_rtsp"
 description: "Stream RTSP cameras to Prusa Connect for 3D printer monitoring"
 arch:
@@ -18,7 +18,6 @@ options:
     - name: "Printer 1"
       rtsp_url: ""
       token: ""
-      fingerprint: ""
       upload_interval: 5
       timelapse_enabled: false
       timelapse_save_interval: 30
@@ -29,7 +28,7 @@ schema:
     - name: str
       rtsp_url: url
       token: password
-      fingerprint: str
+      fingerprint: "str?"
       upload_interval: "int(1,300)"
       timelapse_enabled: bool
       timelapse_save_interval: "int(10,3600)?"

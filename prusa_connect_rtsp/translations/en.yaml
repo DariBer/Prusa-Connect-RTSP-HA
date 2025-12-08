@@ -16,8 +16,8 @@ configuration:
     description: Your Prusa Connect camera token (from Prusa Connect settings)
 
   cameras.fingerprint:
-    name: Printer Fingerprint
-    description: The 40-character hex fingerprint from Prusa Connect
+    name: Fingerprint (Optional)
+    description: Leave empty to auto-generate. Only set if you need a specific fingerprint.
 
   cameras.upload_interval:
     name: Upload Interval
