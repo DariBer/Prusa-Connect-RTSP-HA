@@ -107,3 +107,10 @@ The Dockerfile should:
 - NumPy version must be <2.0 for compatibility
 - OpenCV headless variant recommended for containers (no GUI dependencies)
 - RTSP URLs can embed credentials: `rtsp://user:pass@camera-ip:port/stream`
+
+
+
+
+### URL to test rtsp camera stream
+- Use the following URL to test if the camera stream works and can be used to upload images.
+rtsp://thingino:thingino@192.168.2.74:554/ch0

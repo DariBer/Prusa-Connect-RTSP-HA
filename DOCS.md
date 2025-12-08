@@ -1,0 +1,135 @@
+# Prusa Connect RTSP Camera
+
+Stream RTSP camera feeds to Prusa Connect for 3D printer monitoring through Home Assistant.
+
+## Prerequisites
+
+Before setting up this add-on, you'll need:
+
+1. **Prusa Connect Account** - Sign up at [connect.prusa3d.com](https://connect.prusa3d.com)
+2. **RTSP Camera** - A camera that supports RTSP streaming
+3. **Prusa Connect Token and Fingerprint** - See instructions below
+
+## Getting Prusa Connect Credentials
+
+### Token
+
+1. Log in to [Prusa Connect](https://connect.prusa3d.com)
+2. Go to your printer's settings
+3. Navigate to the "Camera" section
+4. Click "Add new other camera"
+5. Copy the generated **Token**
+
+### Fingerprint
+
+The fingerprint is displayed alongside the token when you add a new camera in Prusa Connect. It's a 40-character hexadecimal string.
+
+## Configuration
+
+### Single Camera Setup
+
+```yaml
+cameras:
+  - name: "My Printer"
+    rtsp_url: "rtsp://192.168.1.100:554/stream"
+    token: "your-prusa-connect-token"
+    fingerprint: "your-40-char-fingerprint"
+    upload_interval: 5
+    timelapse_enabled: false
+```
+
+### Multi-Camera Setup
+
+```yaml
+cameras:
+  - name: "Printer 1 - MK4"
+    rtsp_url: "rtsp://user:pass@192.168.1.100:554/ch0"
+    token: "token-for-printer-1"
+    fingerprint: "fingerprint-for-printer-1"
+    upload_interval: 5
+    timelapse_enabled: true
+    timelapse_save_interval: 30
+    timelapse_fps: 24
+  - name: "Printer 2 - Mini"
+    rtsp_url: "rtsp://192.168.1.101:554/stream"
+    token: "token-for-printer-2"
+    fingerprint: "fingerprint-for-printer-2"
+    upload_interval: 10
+    timelapse_enabled: false
+```
+
+## Configuration Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `name` | string | required | Friendly name for the camera |
+| `rtsp_url` | url | required | RTSP stream URL |
+| `token` | password | required | Prusa Connect camera token |
+| `fingerprint` | string | required | 40-character printer fingerprint |
+| `upload_interval` | int | 5 | Seconds between uploads (1-300) |
+| `timelapse_enabled` | bool | false | Enable timelapse capture |
+| `timelapse_save_interval` | int | 30 | Seconds between timelapse frames |
+| `timelapse_fps` | int | 24 | FPS for timelapse videos |
+
+## RTSP URL Examples
+
+Different cameras use different RTSP URL formats:
+
+```
+# Generic format
+rtsp://IP:PORT/STREAM
+
+# With authentication
+rtsp://username:password@IP:PORT/STREAM
+
+# Common examples
+rtsp://192.168.1.100:554/stream
+rtsp://admin:password@192.168.1.100:554/ch0
+rtsp://user:pass@192.168.1.100:554/h264
+```
+
+### Common Camera Brands
+
+- **Wyze**: `rtsp://user:pass@IP/live`
+- **Reolink**: `rtsp://admin:pass@IP:554/h264Preview_01_main`
+- **Hikvision**: `rtsp://admin:pass@IP:554/Streaming/Channels/101`
+- **Tapo**: `rtsp://user:pass@IP:554/stream1`
+- **Thingino**: `rtsp://thingino:thingino@IP:554/ch0`
+
+## Timelapse Files
+
+When timelapse is enabled, frames are saved to:
+
+```
+/share/prusa_connect_rtsp/<camera_name>/
+```
+
+Timelapse videos are generated when the add-on stops or restarts.
+
+## Troubleshooting
+
+### Camera won't connect
+
+- Verify RTSP URL is correct using VLC or similar player
+- Check that the camera is on the same network as Home Assistant
+- Ensure firewall rules allow RTSP traffic (typically port 554)
+
+### 401 Unauthorized errors
+
+- Verify your Prusa Connect token is correct
+- Check that the fingerprint matches what's shown in Prusa Connect
+
+### 429 Rate limit errors
+
+- Increase `upload_interval` to reduce request frequency
+- Prusa Connect recommends at least 5 seconds between uploads
+
+### High CPU usage
+
+- Reduce resolution at the camera level if possible
+- Increase `upload_interval` to reduce processing frequency
+
+## Support
+
+- [GitHub Issues](https://github.com/sebastian/rtsp-to-prusa-ha/issues)
+- [Upstream Project](https://github.com/Knopersikcuo/Prusa-Connect-RTSP)

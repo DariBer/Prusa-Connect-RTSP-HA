@@ -1,0 +1,36 @@
+configuration:
+  cameras:
+    name: Cameras
+    description: Configure one or more RTSP cameras to stream to Prusa Connect
+
+  cameras.name:
+    name: Camera Name
+    description: A friendly name for this camera/printer
+
+  cameras.rtsp_url:
+    name: RTSP URL
+    description: The RTSP stream URL (e.g., rtsp://user:pass@192.168.1.100/stream)
+
+  cameras.token:
+    name: Prusa Connect Token
+    description: Your Prusa Connect camera token (from Prusa Connect settings)
+
+  cameras.fingerprint:
+    name: Printer Fingerprint
+    description: The 40-character hex fingerprint from Prusa Connect
+
+  cameras.upload_interval:
+    name: Upload Interval
+    description: Seconds between frame uploads to Prusa Connect (1-300)
+
+  cameras.timelapse_enabled:
+    name: Enable Timelapse
+    description: Save frames for timelapse video generation
+
+  cameras.timelapse_save_interval:
+    name: Timelapse Save Interval
+    description: Seconds between timelapse frame captures (10-3600)
+
+  cameras.timelapse_fps:
+    name: Timelapse FPS
+    description: Frames per second for generated timelapse videos (1-60)

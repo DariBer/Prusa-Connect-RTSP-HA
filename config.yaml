@@ -1,0 +1,39 @@
+name: "Prusa Connect RTSP Camera"
+version: "1.0.0"
+slug: "prusa_connect_rtsp"
+description: "Stream RTSP cameras to Prusa Connect for 3D printer monitoring"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+url: "https://github.com/sebastian/rtsp-to-prusa-ha"
+startup: application
+boot: auto
+init: false
+
+options:
+  cameras:
+    - name: "Printer 1"
+      rtsp_url: ""
+      token: ""
+      fingerprint: ""
+      upload_interval: 5
+      timelapse_enabled: false
+      timelapse_save_interval: 30
+      timelapse_fps: 24
+
+schema:
+  cameras:
+    - name: str
+      rtsp_url: url
+      token: password
+      fingerprint: str
+      upload_interval: "int(1,300)"
+      timelapse_enabled: bool
+      timelapse_save_interval: "int(10,3600)?"
+      timelapse_fps: "int(1,60)?"
+
+map:
+  - share:rw

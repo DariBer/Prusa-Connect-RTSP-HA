@@ -1,0 +1,34 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2:00 AM UTC
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch upstream files
+        run: |
+          curl -sL https://raw.githubusercontent.com/Knopersikcuo/Prusa-Connect-RTSP/main/main.py -o main.py
+          curl -sL https://raw.githubusercontent.com/Knopersikcuo/Prusa-Connect-RTSP/main/requirements.txt -o requirements.txt
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "chore: sync upstream Prusa-Connect-RTSP"
+          title: "Sync with upstream Prusa-Connect-RTSP"
+          body: |
+            Automated sync of `main.py` and `requirements.txt` from upstream.
+
+            Source: [Knopersikcuo/Prusa-Connect-RTSP](https://github.com/Knopersikcuo/Prusa-Connect-RTSP)
+          branch: sync-upstream
+          delete-branch: true
+          labels: upstream-sync, automated
