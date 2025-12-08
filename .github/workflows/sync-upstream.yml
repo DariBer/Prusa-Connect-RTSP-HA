@@ -17,8 +17,8 @@ jobs:
 
       - name: Fetch upstream files
         run: |
-          curl -sL https://raw.githubusercontent.com/Knopersikcuo/Prusa-Connect-RTSP/main/main.py -o main.py
-          curl -sL https://raw.githubusercontent.com/Knopersikcuo/Prusa-Connect-RTSP/main/requirements.txt -o requirements.txt
+          curl -sL https://raw.githubusercontent.com/Knopersikcuo/Prusa-Connect-RTSP/main/main.py -o prusa_connect_rtsp/main.py
+          curl -sL https://raw.githubusercontent.com/Knopersikcuo/Prusa-Connect-RTSP/main/requirements.txt -o prusa_connect_rtsp/requirements.txt
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
