@@ -5,20 +5,22 @@ FROM $BUILD_FROM
 RUN apk add --no-cache \
     python3 \
     py3-pip \
-    py3-opencv \
     py3-numpy \
     py3-requests \
     ffmpeg \
     jq \
-    bash
+    bash \
+    libstdc++ \
+    libgomp
 
-# Install paho-mqtt for Home Assistant MQTT camera discovery
-RUN pip3 install --no-cache-dir --break-system-packages paho-mqtt
+# Install Python packages via pip (avoids Alpine's broken opencv version string)
+RUN pip3 install --no-cache-dir --break-system-packages \
+    opencv-python-headless \
+    paho-mqtt
 
 # Copy application files
 COPY main.py /
 COPY run.sh /
-
 RUN chmod a+x /run.sh
 
 CMD ["/run.sh"]
