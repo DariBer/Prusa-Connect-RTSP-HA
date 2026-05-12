@@ -5,6 +5,7 @@ FROM $BUILD_FROM
 RUN apk add --no-cache \
     python3 \
     py3-pip \
+    py3-opencv \
     py3-numpy \
     py3-requests \
     ffmpeg \
@@ -13,9 +14,9 @@ RUN apk add --no-cache \
     libstdc++ \
     libgomp
 
-# Install Python packages via pip (avoids Alpine's broken opencv version string)
+# Install paho-mqtt, ignoring broken version metadata from py3-opencv
 RUN pip3 install --no-cache-dir --break-system-packages \
-    opencv-python-headless \
+    --ignore-installed \
     paho-mqtt
 
 # Copy application files
