@@ -14,10 +14,11 @@ RUN apk add --no-cache \
     libstdc++ \
     libgomp
 
-# Fix broken opencv version string that causes pip to crash, then install paho-mqtt
-RUN find /usr/lib/python3* -path "*/opencv*METADATA" -exec \
-    sed -i 's/^Version: python-4\.12\.0/Version: 4.12.0/' {} \; && \
-    pip3 install --no-cache-dir --break-system-packages paho-mqtt
+# Remove broken opencv dist-info so pip can install without crashing,
+# then install paho-mqtt directly with pip bypassing the package index
+RUN rm -rf /usr/lib/python3*/site-packages/opencv* && \
+    pip3 install --no-cache-dir --break-system-packages \
+    --no-deps paho-mqtt
 
 # Copy application files
 COPY main.py /
