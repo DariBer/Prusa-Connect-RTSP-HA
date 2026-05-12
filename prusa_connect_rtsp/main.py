@@ -105,6 +105,7 @@ else:
     fingerprint_header = FINGERPRINT
 
 print(f"📊 Upload interval: {UPLOAD_INTERVAL} seconds")
+print(f"📷 Camera name: {CAMERA_NAME}")
 print("🔄 New HTTP session for each frame (PrusaConnect fix)")
 print("📷 New camera connection for each frame (fresh frames fix)")
 
@@ -195,13 +196,14 @@ def send_frame_to_prusa(image_bytes):
         # CRITICAL: Add Content-Length header!
         content_length = len(image_bytes)
 
-        # Prepare headers with Content-Length
+        # Prepare headers with Content-Length and camera name
         headers = {
             "content-type": "image/jpg",
             "content-length": str(content_length),
             "fingerprint": fingerprint_header,
             "token": TOKEN,
             "connection": "close",  # Force connection close
+            "camera-name": CAMERA_NAME,  # Set camera name in Prusa Connect
         }
 
         # Send PUT request with raw image data
