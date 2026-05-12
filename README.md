@@ -25,7 +25,7 @@ Stream RTSP camera feeds to Prusa Connect for 3D printer monitoring through Home
 
 ## Quick Start
 
-1. Get your Prusa Connect token and fingerprint from [connect.prusa3d.com](https://connect.prusa3d.com)
+1. Get your Prusa Connect token from [connect.prusa3d.com](https://connect.prusa3d.com)
 2. Configure your RTSP camera URL
 3. Start the add-on and check the logs
 
